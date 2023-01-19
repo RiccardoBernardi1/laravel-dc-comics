@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Comic;
 use Illuminate\Http\Request;
 
 class ResourceController extends Controller
@@ -14,7 +15,8 @@ class ResourceController extends Controller
      */
     public function index()
     {
-        return view('homepage');
+        $comics=Comic::all();
+        return view('homepage',compact('comics'));
     }
 
     /**
