@@ -16,7 +16,7 @@ class ResourceController extends Controller
     public function index()
     {
         $comics=Comic::all();
-        return view('homepage',compact('comics'));
+        return view('comics.homepage',compact('comics'));
     }
 
     /**
@@ -46,9 +46,9 @@ class ResourceController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Comic $comic)
     {
-        //
+        return view('comics.show',compact('comic'));
     }
 
     /**
