@@ -1,4 +1,4 @@
-@extends('templates.main')
+@extends('layouts.main')
 @section('page-content')
     <div class="container">
         <h1 class="text-center py-5">Lista Fumetti</h1>
@@ -28,5 +28,6 @@
                 @endforeach
             </tbody>
         </table>
+        <a href="{{route('comics.create')}}" class="btn btn-success">Aggiungi un nuovo fumetto</a>
     </div>
 @endsection
