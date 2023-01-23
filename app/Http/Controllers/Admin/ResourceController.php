@@ -89,6 +89,18 @@ class ResourceController extends Controller
      */
     public function update(Request $request, Comic $comic)
     {
+        $request->validate([
+            'title'=> 'required|string|between:5,100',
+            'description'=> 'nullable|string',
+            'thumb'=> 'nullable|url',
+            'series'=> 'required|string|between:5,50',
+            'sale_date'=> 'required|date',
+            'type'=>    [   
+                            'required',
+                            Rule::in(['comic book','graphic novel']),
+                        ],
+            'price'=> 'required|numeric|between:1,99'
+        ]);
         $data=$request->all();
         $comic->update($data);
         return redirect()->route('comics.index',$comic->id);
