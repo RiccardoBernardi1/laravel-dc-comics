@@ -18,7 +18,7 @@
                 <label for="title" class="form-label">Inserisci il titolo</label>
                 <input type="text" class="form-control @error('title') is-invalid @enderror" id="title" name="title" value="{{old('title')}}" required>
                 @error('title')
-                    <div class="alert alert-danger">{{ $message }}</div>
+                    <div class="alert alert-danger">{{ $message }}</div>//
                 @enderror
             </div>
             <div class="mb-3">
@@ -30,7 +30,7 @@
             </div>
             <div class="mb-3">
                 <label for="thumb" class="form-label">Inserisci il link alla copertina</label>
-                <input type="text" class="form-control" id="thumb" name="thumb" value="{{old('thumb')}}">
+                <input type="text" class="form-control  @error('thumb') is-invalid @enderror" id="thumb" name="thumb" value="{{old('thumb')}}">
                 @error('thumb')
                     <div class="alert alert-danger">{{ $message }}</div>
                 @enderror
