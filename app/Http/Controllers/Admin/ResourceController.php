@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Comic;
 use Illuminate\Validation\Rule;
 use Illuminate\Http\Request;
+use App\Http\Requests\ComicRequest;
 use Illuminate\Validation\Rule as ValidationRule;
 
 class ResourceController extends Controller
@@ -37,21 +38,9 @@ class ResourceController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(ComicRequest $request)
     {
-        $request->validate([
-            'title'=> 'required|string|between:5,100',
-            'description'=> 'nullable|string',
-            'thumb'=> 'nullable|url',
-            'series'=> 'required|string|between:5,50',
-            'sale_date'=> 'required|date',
-            'type'=>    [   
-                            'required',
-                            Rule::in(['comic book','graphic novel']),
-                        ],
-            'price'=> 'required|numeric|between:1,99'
-        ]);
-        $data=$request->all();
+        $data=$request->validated();
         $new_comic= new Comic();
         $new_comic->fill($data);
         $new_comic->save();
@@ -87,21 +76,9 @@ class ResourceController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Comic $comic)
+    public function update(ComicRequest $request, Comic $comic)
     {
-        $request->validate([
-            'title'=> 'required|string|between:5,100',
-            'description'=> 'nullable|string',
-            'thumb'=> 'nullable|url',
-            'series'=> 'required|string|between:5,50',
-            'sale_date'=> 'required|date',
-            'type'=>    [   
-                            'required',
-                            Rule::in(['comic book','graphic novel']),
-                        ],
-            'price'=> 'required|numeric|between:1,99'
-        ]);
-        $data=$request->all();
+        $data=$request->validated();
         $comic->update($data);
         return redirect()->route('comics.index',$comic->id);
     }
